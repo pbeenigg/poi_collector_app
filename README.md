@@ -15,18 +15,17 @@
 | 📤 **数据导出** | 将保存的数据导出为 CSV 格式（兼容 Excel）                  |
 | ⚙️ **设置管理** | 配置高德 API Key 及应用偏好设置                            |
 | 📑 **分页加载** | 支持分页查询和加载更多结果                                 |
-
-| 🔍 **批量采集** | 支持按指定筛选条件批量自动分页采集，并需要兼容断点续采 ｜
+| 📑 **批量采集** | 支持按指定筛选条件批量自动分页采集，并需要兼容断点续采     |
 
 ### 资源列表
 
-logo: ![alt text](docs/logo.png)
-菜单底部图：![alt text](docs/menu-bottom.jpg)
-关于项目底图：![alt text](docs/image.jpg)
+- logo: ![alt text](docs/logo.png)
+- 菜单底部图：![alt text](docs/menu-bottom.jpg)
+- 关于项目底部图：![alt text](docs/image.jpg)
 
-高德 POI 分类与编码： [text](docs/amap_poi_typecode.csv)
-高德城市编码：[text](docs/amap_adcode_citycode.csv)
-高德 API: [text](docs/amap-api.md)
+- 高德 POI 分类与编码： [text](docs/amap_poi_typecode.csv)
+- 高德城市编码：[text](docs/amap_adcode_citycode.csv)
+- 高德 API: [text](docs/amap-api.md)
 
 ### 数据模型
 
