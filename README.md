@@ -231,8 +231,8 @@ poi_collector_app/
 
 ### 前置要求
 
-- Node.js 18.x 或更高版本
-- npm 9.x 或 yarn 1.22.x
+- Node.js 22.x 或更高版本
+- npm 10.x 或 yarn 1.22.x
 - Python 3.x（用于 node-gyp 编译原生模块）
 - macOS 12.0 或更高版本（macOS 开发）
 - Windows 10 或更高版本（Windows 开发）
@@ -246,8 +246,8 @@ poi_collector_app/
    brew install node
 
    # 或使用 nvm
-   nvm install 18
-   nvm use 18
+   nvm install 22
+   nvm use 22
 
    # 验证安装
    node --version

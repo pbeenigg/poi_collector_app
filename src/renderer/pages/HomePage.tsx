@@ -94,7 +94,7 @@ const HomePage: React.FC = () => {
                 textShadow: '1px 1px 4px rgba(0,0,0,0.8)',
               }}
             >
-              高效、智能的地理位置数据采集工具
+              高效、智能的地理位置数据采集工具 · v1.0.0
             </Typography>
           </Box>
         </motion.div>

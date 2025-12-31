@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "dev": "concurrently \"npm run dev:renderer\" \"npm run dev:electron\" \"npm run build\"",
+    "dev": "concurrently \"npm run dev:renderer\" \"npm run dev:electron\" \"npm run dev:main\"",
     "dev:renderer": "webpack serve --config webpack.renderer.config.js --mode development",
     "dev:electron": "wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .",
     "dev:main": "webpack --config webpack.main.config.js --mode development --watch",

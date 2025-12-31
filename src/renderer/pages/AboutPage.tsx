@@ -9,9 +9,14 @@ const AboutPage: React.FC = () => {
   return (
     <Box sx={{ width: '100%', maxWidth: '1200px', mx: 'auto' }}>
       {/* 页面标题 */}
-      <Typography variant="h4" sx={{ mb: 4, fontWeight: 'bold' }}>
-        关于项目
-      </Typography>
+      <Box sx={{ mb: 4, display: 'flex', alignItems: 'baseline', gap: 2 }}>
+        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+          关于项目
+        </Typography>
+        <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+          v1.0.0
+        </Typography>
+      </Box>
 
       {/* 核心功能 */}
       <Paper sx={{ p: 3, mb: 3 }}>
