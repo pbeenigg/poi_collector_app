@@ -1,0 +1,114 @@
+{
+  "name": "poi-collector-app",
+  "version": "1.0.0",
+  "description": "POI 数据采集应用",
+  "main": "dist/main/index.js",
+  "author": "Your Name",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "dev": "concurrently \"npm run dev:renderer\" \"npm run dev:electron\" \"npm run build\"",
+    "dev:renderer": "webpack serve --config webpack.renderer.config.js --mode development",
+    "dev:electron": "wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .",
+    "dev:main": "webpack --config webpack.main.config.js --mode development --watch",
+    "build": "npm run build:main && npm run build:preload && npm run build:renderer",
+    "build:main": "webpack --config webpack.main.config.js --mode production",
+    "build:preload": "webpack --config webpack.preload.config.js --mode production",
+    "build:renderer": "webpack --config webpack.renderer.config.js --mode production",
+    "build:all": "npm run build && electron-builder -mwl",
+    "build:mac": "npm run build && electron-builder --mac",
+    "build:win": "npm run build && electron-builder --win",
+    "build:linux": "npm run build && electron-builder --linux",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx,scss,css}\"",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "rebuild": "electron-rebuild -f -w better-sqlite3"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.0",
+    "@mui/material": "^6.1.0",
+    "@reduxjs/toolkit": "^2.3.0",
+    "@supabase/supabase-js": "^2.89.0",
+    "axios": "^1.7.0",
+    "better-sqlite3": "^11.5.0",
+    "csv-parser": "^3.0.0",
+    "csv-stringify": "^6.5.0",
+    "date-fns": "^4.1.0",
+    "electron": "^39.2.7",
+    "electron-store": "^11.0.2",
+    "framer-motion": "^12.23.26",
+    "lodash": "^4.17.21",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-redux": "^9.1.0",
+    "react-router-dom": "^7.1.1",
+    "react-spring": "^10.0.3",
+    "react-window": "^1.8.10"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/jest": "^29.5.0",
+    "@types/lodash": "^4.17.13",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.2.3",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-window": "^1.8.8",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "autoprefixer": "^10.4.0",
+    "concurrently": "^8.2.2",
+    "copy-webpack-plugin": "^13.0.1",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.11.0",
+    "electron-builder": "^26.0.12",
+    "electron-rebuild": "^3.2.9",
+    "eslint": "^8.55.0",
+    "html-webpack-plugin": "^5.6.0",
+    "jest": "^29.7.0",
+    "postcss": "^8.4.0",
+    "postcss-loader": "^8.1.0",
+    "prettier": "^3.1.0",
+    "sass": "^1.69.0",
+    "sass-loader": "^13.3.0",
+    "style-loader": "^3.3.4",
+    "tailwindcss": "^3.4.0",
+    "ts-jest": "^29.1.0",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.3.0",
+    "wait-on": "^7.2.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.0",
+    "webpack-dev-server": "^4.15.0"
+  },
+  "build": {
+    "appId": "com.poi.collector",
+    "productName": "POI数据采集器",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "icon": "assets/images/logo.png",
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "icon": "assets/images/logo.png",
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "icon": "assets/images/logo.png",
+      "target": [
+        "AppImage"
+      ]
+    }
+  }
+}

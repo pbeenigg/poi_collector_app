@@ -1,3 +1,9 @@
+---
+trigger: model_decision
+description: 
+globs: 
+---
+
 # POI Collector App - AI Coding Instructions
 
 ## 项目概述
