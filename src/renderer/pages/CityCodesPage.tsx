@@ -170,7 +170,7 @@ const CityCodesPage: React.FC = () => {
   return (
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h4">城市编码管理</Typography>
+        <Typography variant="h4">城市编码</Typography>
         <Box>
           <Button
             variant="outlined"
@@ -228,12 +228,12 @@ const CityCodesPage: React.FC = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>城市名称</TableCell>
-                  <TableCell>行政区划代码</TableCell>
-                  <TableCell>城市代码</TableCell>
-                  <TableCell>中心坐标</TableCell>
-                  <TableCell>级别</TableCell>
-                  <TableCell align="right">操作</TableCell>
+                  <TableCell sx={{ minWidth: 120, maxWidth: 180 }}>城市名称</TableCell>
+                  <TableCell sx={{ minWidth: 120, maxWidth: 150 }}>行政区划代码</TableCell>
+                  <TableCell sx={{ minWidth: 100, maxWidth: 120 }}>城市代码</TableCell>
+                  <TableCell sx={{ minWidth: 150, maxWidth: 180 }}>中心坐标</TableCell>
+                  <TableCell sx={{ minWidth: 80, maxWidth: 100 }}>级别</TableCell>
+                  <TableCell align="right" sx={{ width: 120 }}>操作</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

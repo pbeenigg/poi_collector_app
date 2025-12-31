@@ -560,20 +560,14 @@ const SettingsPage: React.FC = () => {
                 >
                   <MenuItem value="cyberpunk">
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <Box sx={{ width: 16, height: 16, borderRadius: '50%', bgcolor: '#9D4EDD' }} />
-                      🌟 赛博朋克（霓虹紫）
-                    </Box>
-                  </MenuItem>
-                  <MenuItem value="matrix">
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <Box sx={{ width: 16, height: 16, borderRadius: '50%', bgcolor: '#00FF41' }} />
-                      🟢 矩阵绿（黑客风）
+                      <Box sx={{ width: 16, height: 16, borderRadius: '50%', bgcolor: '#A78BFA' }} />
+                      💜 赛博紫
                     </Box>
                   </MenuItem>
                   <MenuItem value="darkblue">
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <Box sx={{ width: 16, height: 16, borderRadius: '50%', bgcolor: '#00D9FF' }} />
-                      🔵 暗夜蓝（科技蓝）
+                      <Box sx={{ width: 16, height: 16, borderRadius: '50%', bgcolor: '#38BDF8' }} />
+                      💙 科技蓝
                     </Box>
                   </MenuItem>
                 </Select>

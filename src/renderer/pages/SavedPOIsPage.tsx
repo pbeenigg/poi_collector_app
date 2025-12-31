@@ -194,14 +194,13 @@ const SavedPOIsPage: React.FC = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>名称</TableCell>
-                <TableCell>类型</TableCell>
-                <TableCell>地址</TableCell>
-                <TableCell>城市</TableCell>
-                <TableCell>区域</TableCell>
-                <TableCell>电话</TableCell>
-                <TableCell>坐标</TableCell>
-                <TableCell>操作</TableCell>
+                <TableCell sx={{ minWidth: 180, maxWidth: 250 }}>名称</TableCell>
+                <TableCell sx={{ minWidth: 120, maxWidth: 180 }}>类型</TableCell>
+                <TableCell sx={{ minWidth: 200, maxWidth: 350 }}>地址</TableCell>
+                <TableCell sx={{ minWidth: 100, maxWidth: 120 }}>城市</TableCell>
+                <TableCell sx={{ minWidth: 100, maxWidth: 120 }}>区域</TableCell>
+                <TableCell sx={{ minWidth: 150, maxWidth: 180 }}>坐标</TableCell>
+                <TableCell sx={{ width: 80 }}>操作</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -212,7 +211,6 @@ const SavedPOIsPage: React.FC = () => {
                   <TableCell>{poi.address}</TableCell>
                   <TableCell>{poi.cityname}</TableCell>
                   <TableCell>{poi.adname}</TableCell>
-                  <TableCell>{poi.tel || '-'}</TableCell>
                   <TableCell>{poi.location}</TableCell>
                   <TableCell>
                     <Tooltip title="删除">

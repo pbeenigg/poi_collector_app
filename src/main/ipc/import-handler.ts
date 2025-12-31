@@ -82,16 +82,17 @@ export function registerImportHandlers(): void {
   });
 
   // 获取城市编码数量
-  ipcMain.handle(IPC_CHANNELS.GET_CITY_CODE_COUNT, async () => {
+  ipcMain.handle(IPC_CHANNELS.CITY_CODES_GET_COUNT, async () => {
     try {
       const dbService = DatabaseServiceFactory.getService() as any;
-      const count = await dbService.getCityCodeCount();
-      return { success: true, count };
+      const result = await dbService.getCityCodesPage('', 999999, 0);
+      return { success: true, data: result.total || 0 };
     } catch (error) {
       logger.error('获取城市编码数量失败', error);
       return {
         success: false,
         error: error instanceof Error ? error.message : '获取失败',
+        data: 0,
       };
     }
   });
@@ -174,6 +175,22 @@ export function registerImportHandlers(): void {
   });
 
   // ==================== POI 分类编码管理 ====================
+
+  // 获取 POI 分类编码数量
+  ipcMain.handle(IPC_CHANNELS.POI_TYPE_CODES_GET_COUNT, async () => {
+    try {
+      const dbService = DatabaseServiceFactory.getService() as any;
+      const result = await dbService.getPoiTypeCodesPage('', 999999, 0);
+      return { success: true, data: result.total || 0 };
+    } catch (error) {
+      logger.error('获取 POI 分类编码数量失败', error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : '获取失败',
+        data: 0,
+      };
+    }
+  });
 
   // 搜索 POI 分类编码（用于下拉框）
   ipcMain.handle(IPC_CHANNELS.POI_TYPE_CODES_SEARCH, async (_, keyword: string, limit?: number) => {

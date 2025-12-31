@@ -7,12 +7,14 @@ import { logger } from './utils/logger';
  */
 export function createMainWindow(): BrowserWindow {
   const mainWindow = new BrowserWindow({
-    width: 1200,
+    width: 1280,
     height: 800,
-    minWidth: 800,
-    minHeight: 600,
-    title: 'POI 数据采集器',
+    minWidth: 1024,
+    minHeight: 768,
+    title: 'POI（地标）数据采集器',
     icon: path.join(__dirname, '../renderer/assets/images/logo.png'),
+    backgroundColor: '#1E1B4B',
+    titleBarStyle: 'hiddenInset',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,

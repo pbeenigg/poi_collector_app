@@ -497,7 +497,7 @@ const SearchPage: React.FC = () => {
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
-        POI 搜索
+        POI搜索
       </Typography>
 
       {/* 搜索表单 */}
@@ -712,19 +712,18 @@ const SearchPage: React.FC = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell padding="checkbox">
+                  <TableCell padding="checkbox" sx={{ width: 60 }}>
                     <Checkbox
                       checked={selectedPOIs.length === searchResults.length && searchResults.length > 0}
                       indeterminate={selectedPOIs.length > 0 && selectedPOIs.length < searchResults.length}
                       onChange={handleToggleSelectAll}
                     />
                   </TableCell>
-                  <TableCell>名称</TableCell>
-                  <TableCell>类型</TableCell>
-                  <TableCell>地址</TableCell>
-                  <TableCell>城市</TableCell>
-                  <TableCell>电话</TableCell>
-                  <TableCell>操作</TableCell>
+                  <TableCell sx={{ minWidth: 180, maxWidth: 250 }}>名称</TableCell>
+                  <TableCell sx={{ minWidth: 120, maxWidth: 180 }}>类型</TableCell>
+                  <TableCell sx={{ minWidth: 200, maxWidth: 350 }}>地址</TableCell>
+                  <TableCell sx={{ minWidth: 100, maxWidth: 120 }}>城市</TableCell>
+                  <TableCell sx={{ width: 80 }}>操作</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -740,7 +739,6 @@ const SearchPage: React.FC = () => {
                     <TableCell>{poi.type}</TableCell>
                     <TableCell>{poi.address}</TableCell>
                     <TableCell>{poi.cityname}</TableCell>
-                    <TableCell>{poi.tel || '-'}</TableCell>
                     <TableCell>
                       <Tooltip title="保存">
                         <IconButton size="small" onClick={() => handleSaveSingle(poi)}>

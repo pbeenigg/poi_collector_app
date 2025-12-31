@@ -11,6 +11,7 @@ import SavedPOIsPage from './pages/SavedPOIsPage';
 import SettingsPage from './pages/SettingsPage';
 import CityCodesPage from './pages/CityCodesPage';
 import PoiTypeCodesPage from './pages/PoiTypeCodesPage';
+import AboutPage from './pages/AboutPage';
 
 /**
  * 应用内容组件（使用主题）
@@ -32,6 +33,7 @@ const AppContent: React.FC = () => {
             <Route path="/city-codes" element={<CityCodesPage />} />
             <Route path="/poi-type-codes" element={<PoiTypeCodesPage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </Layout>
       </Router>

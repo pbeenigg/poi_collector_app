@@ -184,7 +184,7 @@ const PoiTypeCodesPage: React.FC = () => {
   return (
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h4">POI 分类编码管理</Typography>
+        <Typography variant="h4">地标分类</Typography>
         <Box>
           <Button
             variant="outlined"
@@ -242,11 +242,11 @@ const PoiTypeCodesPage: React.FC = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>分类名称</TableCell>
-                  <TableCell>分类编码</TableCell>
-                  <TableCell>父级编码</TableCell>
-                  <TableCell>层级</TableCell>
-                  <TableCell align="right">操作</TableCell>
+                  <TableCell sx={{ minWidth: 180, maxWidth: 280 }}>分类名称</TableCell>
+                  <TableCell sx={{ minWidth: 120, maxWidth: 150 }}>分类编码</TableCell>
+                  <TableCell sx={{ minWidth: 120, maxWidth: 150 }}>父级编码</TableCell>
+                  <TableCell sx={{ minWidth: 80, maxWidth: 100 }}>层级</TableCell>
+                  <TableCell align="right" sx={{ width: 120 }}>操作</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

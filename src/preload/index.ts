@@ -22,6 +22,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   searchLocalPOIs: (keyword: string) =>
     ipcRenderer.invoke(IPC_CHANNELS.POI_SEARCH_LOCAL, keyword),
   getPOICount: () => ipcRenderer.invoke(IPC_CHANNELS.POI_GET_COUNT),
+  getCityCodeCount: () => ipcRenderer.invoke(IPC_CHANNELS.CITY_CODES_GET_COUNT),
+  getPoiTypeCodeCount: () => ipcRenderer.invoke(IPC_CHANNELS.POI_TYPE_CODES_GET_COUNT),
 
   // 设置操作
   getSettings: () => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_GET),
@@ -108,6 +110,8 @@ declare global {
       deletePOI: (id: string) => Promise<any>;
       searchLocalPOIs: (keyword: string) => Promise<any>;
       getPOICount: () => Promise<any>;
+      getCityCodeCount: () => Promise<any>;
+      getPoiTypeCodeCount: () => Promise<any>;
       getSettings: () => Promise<any>;
       setSettings: (settings: Record<string, any>) => Promise<any>;
       setApiKey: (key: string) => Promise<any>;

@@ -3,44 +3,33 @@ import { createTheme, Theme } from '@mui/material/styles';
 /**
  * 主题类型定义
  */
-export type ThemeMode = 'cyberpunk' | 'matrix' | 'darkblue';
+export type ThemeMode = 'cyberpunk' | 'darkblue';
 
 /**
  * 主题配色方案
  */
 export const themeColors = {
   cyberpunk: {
-    primary: '#9D4EDD',      // 霓虹紫
-    secondary: '#00F5FF',    // 电光蓝
-    background: '#0A0E27',   // 深空黑
-    paper: '#1A1F3A',        // 深灰
+    primary: '#A78BFA',      // 柔和紫
+    secondary: '#60A5FA',    // 天蓝
+    background: '#1E1B4B',   // 深紫蓝
+    paper: '#312E81',        // 紫灰
     text: '#E0E7FF',         // 冷白
-    accent: '#FF006E',       // 荧光粉
-    success: '#10B981',
-    warning: '#F59E0B',
-    error: '#EF4444',
-  },
-  matrix: {
-    primary: '#00FF41',      // 矩阵绿
-    secondary: '#008F11',    // 深绿
-    background: '#000000',   // 黑色
-    paper: '#001A00',        // 深绿黑
-    text: '#00FF41',         // 亮绿
-    accent: '#39FF14',       // 黄绿
-    success: '#00FF41',
-    warning: '#FFFF00',
-    error: '#FF0000',
+    accent: '#F472B6',       // 粉紫
+    success: '#34D399',
+    warning: '#FBBF24',
+    error: '#F87171',
   },
   darkblue: {
-    primary: '#00D9FF',      // 科技蓝
-    secondary: '#0066FF',    // 深蓝
-    background: '#0A1929',   // 深蓝黑
-    paper: '#132F4C',        // 蓝灰
-    text: '#B2E3FF',         // 冰蓝白
-    accent: '#66B2FF',       // 亮蓝
-    success: '#10B981',
-    warning: '#F59E0B',
-    error: '#EF4444',
+    primary: '#38BDF8',      // 亮蓝
+    secondary: '#60A5FA',    // 天蓝
+    background: '#0F172A',   // 深蓝灰
+    paper: '#1E293B',        // 蓝灰
+    text: '#E2E8F0',         // 浅灰白
+    accent: '#7DD3FC',       // 浅蓝
+    success: '#34D399',
+    warning: '#FBBF24',
+    error: '#F87171',
   },
 };
 
@@ -81,38 +70,60 @@ export const createAppTheme = (mode: ThemeMode): Theme => {
     },
     typography: {
       fontFamily: [
-        'JetBrains Mono',
-        'Fira Code',
-        'Consolas',
-        'Monaco',
-        'monospace',
         '-apple-system',
         'BlinkMacSystemFont',
         '"Segoe UI"',
         'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
       ].join(','),
+      fontSize: 14,
       h1: {
+        fontSize: '2rem',
         fontWeight: 700,
         letterSpacing: '-0.02em',
       },
       h2: {
+        fontSize: '1.75rem',
         fontWeight: 700,
         letterSpacing: '-0.01em',
       },
       h3: {
+        fontSize: '1.5rem',
         fontWeight: 600,
       },
       h4: {
+        fontSize: '1.25rem',
         fontWeight: 600,
       },
+      h5: {
+        fontSize: '1.125rem',
+        fontWeight: 600,
+      },
+      h6: {
+        fontSize: '1rem',
+        fontWeight: 600,
+      },
+      body1: {
+        fontSize: '0.875rem',
+      },
+      body2: {
+        fontSize: '0.8125rem',
+      },
       button: {
+        fontSize: '0.875rem',
         textTransform: 'none',
         fontWeight: 600,
       },
+      caption: {
+        fontSize: '0.75rem',
+      },
     },
     shape: {
-      borderRadius: 8,
+      borderRadius: 12,
     },
+    spacing: 8,
     components: {
       MuiButton: {
         styleOverrides: {
@@ -140,15 +151,16 @@ export const createAppTheme = (mode: ThemeMode): Theme => {
       MuiCard: {
         styleOverrides: {
           root: {
-            background: `linear-gradient(135deg, ${colors.paper}E6 0%, ${colors.paper}CC 100%)`,
-            backdropFilter: 'blur(10px)',
-            border: `1px solid ${colors.primary}40`,
-            boxShadow: `0 8px 32px ${colors.background}80, 0 0 0 1px ${colors.primary}20`,
-            transition: 'all 0.3s ease',
+            background: `linear-gradient(135deg, ${colors.paper}F2 0%, ${colors.paper}E6 100%)`,
+            backdropFilter: 'blur(20px)',
+            border: `1px solid ${colors.primary}30`,
+            boxShadow: `0 4px 24px ${colors.background}60, 0 2px 8px ${colors.background}40`,
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            overflow: 'visible',
             '&:hover': {
-              transform: 'translateY(-4px)',
-              boxShadow: `0 12px 48px ${colors.background}80, 0 0 0 1px ${colors.primary}60`,
-              border: `1px solid ${colors.primary}80`,
+              transform: 'translateY(-2px)',
+              boxShadow: `0 8px 32px ${colors.background}80, 0 4px 12px ${colors.background}60`,
+              border: `1px solid ${colors.primary}60`,
             },
           },
         },
@@ -214,15 +226,50 @@ export const createAppTheme = (mode: ThemeMode): Theme => {
           },
         },
       },
+      MuiTableContainer: {
+        styleOverrides: {
+          root: {
+            borderRadius: 12,
+            overflow: 'auto',
+            maxWidth: '100%',
+            '&::-webkit-scrollbar': {
+              width: 8,
+              height: 8,
+            },
+            '&::-webkit-scrollbar-track': {
+              background: `${colors.background}40`,
+              borderRadius: 4,
+            },
+            '&::-webkit-scrollbar-thumb': {
+              background: `${colors.primary}60`,
+              borderRadius: 4,
+              '&:hover': {
+                background: `${colors.primary}80`,
+              },
+            },
+          },
+        },
+      },
+      MuiTable: {
+        styleOverrides: {
+          root: {
+            minWidth: 650,
+          },
+        },
+      },
       MuiTableCell: {
         styleOverrides: {
           root: {
             borderBottom: `1px solid ${colors.primary}20`,
+            padding: '16px',
           },
           head: {
             fontWeight: 700,
             background: `${colors.primary}10`,
             borderBottom: `2px solid ${colors.primary}40`,
+            position: 'sticky',
+            top: 0,
+            zIndex: 10,
           },
         },
       },
@@ -279,7 +326,6 @@ export const createAppTheme = (mode: ThemeMode): Theme => {
  * 主题名称映射
  */
 export const themeNames: Record<ThemeMode, string> = {
-  cyberpunk: '赛博朋克',
-  matrix: '矩阵绿',
-  darkblue: '暗夜蓝',
+  cyberpunk: '赛博紫',
+  darkblue: '科技蓝',
 };

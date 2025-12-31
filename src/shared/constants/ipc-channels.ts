@@ -36,6 +36,7 @@ export const IPC_CHANNELS = {
   // 城市编码管理
   CITY_CODES_SEARCH: 'cityCodes:search',
   CITY_CODES_GET_PAGE: 'cityCodes:getPage',
+  CITY_CODES_GET_COUNT: 'cityCodes:getCount',
   CITY_CODE_GET: 'cityCode:get',
   CITY_CODE_UPSERT: 'cityCode:upsert',
   CITY_CODE_DELETE: 'cityCode:delete',
@@ -43,6 +44,7 @@ export const IPC_CHANNELS = {
   // POI 分类编码管理
   POI_TYPE_CODES_SEARCH: 'poiTypeCodes:search',
   POI_TYPE_CODES_GET_PAGE: 'poiTypeCodes:getPage',
+  POI_TYPE_CODES_GET_COUNT: 'poiTypeCodes:getCount',
   POI_TYPE_CODE_GET: 'poiTypeCode:get',
   POI_TYPE_CODE_UPSERT: 'poiTypeCode:upsert',
   POI_TYPE_CODE_DELETE: 'poiTypeCode:delete',
