@@ -1,31 +1,197 @@
-# 高德 POI 数据采集应用
+<div align="center">
 
-## 项目概述
+# 🗺️ POI 数据采集器
 
-这是一个使用 Electron 构建桌面应用程序，用于从高德开放平台采集 POI（兴趣点）数据。应用支持关键词搜索、数据库存储、批量自动采集以及 CSV 格式导出功能。
+**高效、智能的地理位置数据采集工具**
 
-## 功能特性
+[![Electron](https://img.shields.io/badge/Electron-28.3.3-47848F?style=flat-square&logo=electron)](https://www.electronjs.org/)
+[![React](https://img.shields.io/badge/React-19.2.3-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3.0-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-### 核心功能
+[功能特性](#-功能特性) • [快速开始](#-快速开始) • [技术架构](#-技术架构) • [使用指南](#-使用指南) • [开发文档](#-开发文档)
 
-| 功能模块        | 描述                                                       |
-| --------------- | ---------------------------------------------------------- |
-| 🔍 **POI 搜索** | 通过关键字、城市、POI 类型查询高德地图 API                 |
-| 💾 **本地存储** | 将感兴趣的 POI 数据保存到本地 SQLite,MySQL,Postgres 数据库 |
-| 📤 **数据导出** | 将保存的数据导出为 CSV 格式（兼容 Excel）                  |
-| ⚙️ **设置管理** | 配置高德 API Key 及应用偏好设置                            |
-| 📑 **分页加载** | 支持分页查询和加载更多结果                                 |
-| 📑 **批量采集** | 支持按指定筛选条件批量自动分页采集，并需要兼容断点续采     |
+</div>
 
-### 资源列表
+---
 
-- logo: ![alt text](docs/logo.png)
-- 菜单底部图：![alt text](docs/menu-bottom.jpg)
-- 关于项目底部图：![alt text](docs/image.jpg)
+## 📖 项目简介
 
-- 高德 POI 分类与编码： [text](docs/amap_poi_typecode.csv)
-- 高德城市编码：[text](docs/amap_adcode_citycode.csv)
-- 高德 API: [text](docs/amap-api.md)
+POI 数据采集器是一款基于 Electron + React 构建的跨平台桌面应用，专为高效采集和管理地理位置兴趣点（POI）数据而设计。通过集成高德地图开放平台 API，提供强大的数据采集、存储、管理和导出功能。
+
+### ✨ 核心亮点
+
+- 🚀 **高效采集** - 支持单次搜索和批量自动采集，智能分页处理
+- 💾 **双模式存储** - 本地 SQLite + 云端 Supabase，数据安全可靠
+- 🎯 **精准搜索** - 支持关键词、城市、POI 分类多维度筛选
+- 📊 **数据管理** - 完善的数据查看、编辑、删除功能
+- 📤 **灵活导出** - 支持 CSV 格式导出，兼容 Excel
+- 🔑 **多 Key 管理** - 支持多个 API Key 轮换使用，避免额度限制
+- 🎨 **现代 UI** - Material-UI 设计，流畅的用户体验
+
+---
+
+## 🎯 功能特性
+
+### 核心功能模块
+
+| 功能 | 描述 | 状态 |
+|------|------|------|
+| 🔍 **POI 搜索** | 支持关键词搜索和周边搜索，可按城市、分类筛选 | ✅ 已完成 |
+| 📦 **批量采集** | 自动分页采集，支持断点续传和进度监控 | ✅ 已完成 |
+| 💾 **数据存储** | 本地 SQLite + 云端 Supabase 双模式存储 | ✅ 已完成 |
+| 📊 **数据管理** | 查看、搜索、编辑、删除已保存的 POI 数据 | ✅ 已完成 |
+| 📤 **数据导出** | 导出为 CSV 格式，完美兼容 Excel | ✅ 已完成 |
+| 🔑 **API Key 管理** | 支持多个 API Key，自动轮换和额度监控 | ✅ 已完成 |
+| 🏙️ **城市编码管理** | 内置全国城市编码数据，支持导入和管理 | ✅ 已完成 |
+| 🏷️ **POI 分类管理** | 完整的高德 POI 分类体系，支持导入和查询 | ✅ 已完成 |
+| ⚙️ **设置管理** | 主题切换、分页设置、采集延迟等个性化配置 | ✅ 已完成 |
+
+### 📚 数据资源
+
+- 📋 [高德 POI 分类与编码](docs/amap_poi_typecode.csv) - 完整的 POI 分类体系
+- 🏙️ [全国城市编码表](docs/amap_adcode_citycode.csv) - 全国行政区划代码
+- 📖 [高德 API 文档](docs/amap-api.md) - API 接口说明
+
+---
+
+## 📸 应用界面
+
+### 首页
+
+![home.jpg](docs/home.jpg)
+
+<p align="center"><i>应用首页 - 数据统计概览</i></p>
+
+### POI 搜索
+
+![search.jpg](docs/search.jpg)
+
+<p align="center"><i>POI 搜索页面 - 支持关键词搜索和批量采集</i></p>
+
+### 数据管理
+
+![saves.jpg](docs/saves.jpg)
+
+<p align="center"><i>已保存 POI 数据管理页面</i></p>
+
+### 关于页面
+
+![about.jpg](docs/about.jpg)
+
+<p align="center"><i>关于项目 - 功能介绍和技术栈</i></p>
+
+---
+
+## 🚀 快速开始
+
+### 环境要求
+
+- **Node.js**: 22.x 或更高版本
+- **npm**: 10.x 或更高版本
+- **操作系统**: macOS 12.0+ / Windows 10+ / Linux
+
+### 安装步骤
+
+```bash
+# 1. 克隆项目
+git clone https://github.com/pbeenigg/poi_collector_app.git
+cd poi_collector_app
+
+# 2. 安装依赖
+npm install
+
+# 3. 启动开发模式
+npm run dev
+```
+
+### 配置 API Key
+
+1. 访问 [高德开放平台](https://lbs.amap.com/) 注册账号
+2. 创建应用并获取 Web 服务 API Key
+3. 在应用的「设置」页面添加 API Key
+
+### 构建应用
+
+```bash
+# 构建所有平台
+npm run build:all
+
+# 仅构建 macOS
+npm run build:mac
+
+# 仅构建 Windows
+npm run build:win
+
+# 仅构建 Linux
+npm run build:linux
+```
+
+构建产物位于 `release/` 目录。
+
+---
+
+## 🏗️ 技术架构
+
+### 技术栈
+
+<table>
+<tr>
+<td width="50%">
+
+**前端技术**
+- ⚛️ React 19.2.3
+- 📘 TypeScript 5.3.0
+- 🎨 Material-UI 6.1.0
+- 🔄 Redux Toolkit 2.3.0
+- 🎭 Framer Motion 12.x
+- 🎨 SCSS + Tailwind CSS
+
+</td>
+<td width="50%">
+
+**后端技术**
+- 🖥️ Electron 28.3.3
+- 💾 better-sqlite3 (SQLite)
+- ☁️ Supabase (云端存储)
+- 🌐 Axios (HTTP 客户端)
+- 📦 electron-store (配置存储)
+- 📝 Winston (日志系统)
+
+</td>
+</tr>
+</table>
+
+### 架构设计
+
+```mermaid
+graph TB
+    subgraph Main["Electron 主进程"]
+        Window["窗口管理"]
+        IPC["IPC 通信"]
+        Lifecycle["生命周期"]
+        Services["服务层<br/>• 高德 API 服务<br/>• 数据库服务<br/>• 导出服务"]
+    end
+    
+    subgraph Renderer["Electron 渲染进程"]
+        subgraph React["React 应用"]
+            Pages["页面组件<br/>搜索 | 数据管理 | 设置"]
+            Store["Redux Store<br/>(状态管理)"]
+        end
+    end
+    
+    subgraph Data["数据层"]
+        SQLite["SQLite 本地数据库"]
+        Supabase["Supabase 云端数据库"]
+    end
+    
+    Main <-->|IPC 通信| Renderer
+    Services --> Data
+    
+    style Main fill:#e3f2fd
+    style Renderer fill:#f3e5f5
+    style Data fill:#e8f5e9
+```
 
 ### 数据模型
 
@@ -76,1131 +242,281 @@ interface CityCode {
 }
 ```
 
-## 项目结构
+### 项目结构
 
 ```
 poi_collector_app/
-├── src/
-│   ├── main/                        # 主进程
-│   │   ├── index.ts                 # 主进程入口
-│   │   ├── window.ts                # 窗口管理
-│   │   ├── ipc/                     # IPC 通信处理
+├── 📁 src/                          # 源代码目录
+│   ├── 📁 main/                     # 主进程（Node.js 环境）
+│   │   ├── 📄 index.ts              # 主进程入口
+│   │   ├── 📁 ipc/                  # IPC 通信处理器
 │   │   │   ├── poi-handler.ts       # POI 相关 IPC
-│   │   │   ├── db-handler.ts        # 数据库相关 IPC
+│   │   │   ├── settings-handler.ts  # 设置相关 IPC
 │   │   │   └── export-handler.ts    # 导出相关 IPC
-│   │   ├── services/                # 主进程服务层
+│   │   ├── 📁 services/             # 业务服务层
 │   │   │   ├── amap-service.ts      # 高德 API 服务
-│   │   │   ├── db-service.ts        # 数据库服务
-│   │   │   └── export-service.ts    # 导出服务
-│   │   └── utils/                   # 主进程工具类
+│   │   │   ├── db-service.ts        # SQLite 数据库服务
+│   │   │   ├── db-service-supabase.ts # Supabase 数据库服务
+│   │   │   └── export-service.ts    # 数据导出服务
+│   │   └── 📁 utils/                # 工具类
 │   │       ├── logger.ts            # 日志工具
 │   │       └── config.ts            # 配置管理
 │   │
-│   ├── renderer/                    # 渲染进程（前端）
-│   │   ├── index.html               # HTML 入口
-│   │   ├── index.tsx                # React 入口
-│   │   ├── App.tsx                  # 应用根组件
-│   │   │
-│   │   ├── pages/                   # 页面组件
-│   │   │   ├── SearchPage.tsx       # 搜索页面
-│   │   │   ├── SavedPOIsPage.tsx    # 已保存数据页面
-│   │   │   ├── BatchCollectPage.tsx # 批量采集页面
-│   │   │   └── SettingsPage.tsx     # 设置页面
-│   │   │
-│   │   ├── components/              # 通用组件
-│   │   │   ├── Layout/              # 布局组件
-│   │   │   │   ├── Sidebar.tsx      # 侧边栏
-│   │   │   │   └── Header.tsx       # 顶部栏
-│   │   │   ├── POITable.tsx         # POI 数据表格
-│   │   │   ├── SearchForm.tsx       # 搜索表单
-│   │   │   └── ExportDialog.tsx     # 导出对话框
-│   │   │
-│   │   ├── hooks/                   # 自定义 Hooks
-│   │   │   ├── usePOISearch.ts      # POI 搜索逻辑
-│   │   │   ├── useDatabase.ts       # 数据库操作
-│   │   │   └── useBatchCollect.ts   # 批量采集逻辑
-│   │   │
-│   │   ├── store/                   # 状态管理
+│   ├── 📁 renderer/                 # 渲染进程（浏览器环境）
+│   │   ├── 📄 index.tsx             # React 应用入口
+│   │   ├── 📄 App.tsx               # 根组件
+│   │   ├── 📁 pages/                # 页面组件
+│   │   │   ├── HomePage.tsx         # 首页
+│   │   │   ├── SearchPage.tsx       # POI 搜索页
+│   │   │   ├── SavedPOIsPage.tsx    # 数据管理页
+│   │   │   ├── CityCodesPage.tsx    # 城市编码管理页
+│   │   │   ├── PoiTypeCodesPage.tsx # POI 分类管理页
+│   │   │   ├── SettingsPage.tsx     # 设置页
+│   │   │   └── AboutPage.tsx        # 关于页
+│   │   ├── 📁 components/           # 通用组件
+│   │   │   └── Layout/              # 布局组件
+│   │   ├── 📁 store/                # Redux 状态管理
 │   │   │   ├── index.ts             # Store 配置
 │   │   │   ├── poiSlice.ts          # POI 状态
-│   │   │   ├── settingsSlice.ts     # 设置状态
-│   │   │   └── collectSlice.ts      # 采集任务状态
-│   │   │
-│   │   ├── api/                     # API 封装
-│   │   │   ├── ipc.ts               # IPC 通信封装
-│   │   │   └── types.ts             # 类型定义
-│   │   │
-│   │   ├── styles/                  # 样式文件
-│   │   │   ├── global.scss          # 全局样式
-│   │   │   └── variables.scss       # 样式变量
-│   │   │
-│   │   └── utils/                   # 渲染进程工具
-│   │       ├── format.ts            # 格式化工具
-│   │       └── validation.ts        # 验证工具
+│   │   │   └── settingsSlice.ts     # 设置状态
+│   │   ├── 📁 hooks/                # 自定义 Hooks
+│   │   ├── 📁 styles/               # 样式文件
+│   │   │   └── global.scss          # 全局样式
+│   │   └── 📁 theme/                # 主题配置
 │   │
-│   ├── shared/                      # 共享代码
-│   │   ├── types/                   # 类型定义
-│   │   │   ├── poi.ts               # POI 类型
-│   │   │   ├── category.ts          # 类别类型
-│   │   │   └── city.ts              # 城市类型
-│   │   ├── constants/               # 常量定义
-│   │   │   └── ipc-channels.ts      # IPC 通道常量
-│   │   └── utils/                   # 共享工具
-│   │       └── csv-parser.ts        # CSV 解析
+│   ├── 📁 shared/                   # 主进程和渲染进程共享代码
+│   │   ├── 📁 types/                # TypeScript 类型定义
+│   │   │   └── poi.ts               # POI 数据类型
+│   │   └── 📁 constants/            # 常量定义
+│   │       └── ipc-channels.ts      # IPC 通道常量
 │   │
-│   └── preload/                     # 预加载脚本
-│       └── index.ts                 # 预加载入口
+│   └── 📁 preload/                  # 预加载脚本
+│       └── 📄 index.ts              # 预加载入口（桥接主进程和渲染进程）
 │
-├── resources/                       # 资源文件
-│   ├── data/
-│   │   ├── amap_poi_categories.csv  # POI 分类数据
-│   │   └── amap_city_codes.csv      # 城市编码数据
-│   ├── icons/                       # 应用图标
-│   └── images/                      # 图片资源
+├── 📁 assets/                       # 静态资源
+│   ├── 📁 data/                     # 数据文件
+│   │   ├── amap_poi_typecode.csv    # POI 分类数据
+│   │   └── amap_adcode_citycode.csv # 城市编码数据
+│   └── 📁 images/                   # 图片资源
 │
-├── build/                           # 构建配置
-│   └── electron-builder.json        # Electron Builder 配置
-│
-├── package.json                     # 项目配置
-├── tsconfig.json                    # TypeScript 配置
-├── webpack.config.js                # Webpack 配置
-└── README.md
+├── 📁 dist/                         # 构建输出目录
+├── 📁 release/                      # 打包输出目录
+├── 📄 package.json                  # 项目配置
+├── 📄 tsconfig.json                 # TypeScript 配置
+├── 📄 webpack.*.config.js           # Webpack 配置
+└── 📄 README.md                     # 项目文档
 ```
 
-## 技术架构
+---
 
-### 技术栈
+## 📖 使用指南
 
-| 层级           | 技术选型                      |
-| -------------- |---------------------------|
-| **桌面框架**   | Electron 39.x             |
-| **前端框架**   | React 19.x + TypeScript   |
-| **UI 组件库**  | Material-UI (MUI) 5.x     |
-| **状态管理**   | Redux Toolkit + RTK Query |
-| **样式方案**   | SCSS + Tailwind CSS       |
-| **数据库**     | better-sqlite3 (SQLite)   |
-| **网络请求**   | Axios                     |
-| **构建工具**   | Webpack 5 + TypeScript    |
-| **打包工具**   | Electron Builder          |
-| **架构模式**   | 主进程-渲染进程分离 + IPC 通信       |
-| **本地存储**   | electron-store            |
+### 基本使用流程
 
-### 核心依赖
+#### 1️⃣ 配置 API Key
 
-```json
-{
-  "dependencies": {
-    "electron": "^39.2.7",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "@mui/material": "^6.1.0",
-    "@mui/icons-material": "^6.1.0",
-    "@reduxjs/toolkit": "^2.3.0",
-    "react-redux": "^9.1.0",
-    "axios": "^1.7.0",
-    "better-sqlite3": "^11.5.0",
-    "electron-store": "^11.0.2",
-    "csv-parser": "^3.0.0",
-    "csv-stringify": "^6.5.0",
-    "date-fns": "^4.1.0",
-    "lodash": "^4.17.21"
-  },
-  "devDependencies": {
-    "@types/react": "^19.2.3",
-    "@types/react-dom": "^19.2.3",
-    "@types/node": "^22.21.1",
-    "@types/better-sqlite3": "^7.6.0",
-    "typescript": "^5.3.0",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.0",
-    "webpack-dev-server": "^4.15.0",
-    "ts-loader": "^9.5.0",
-    "sass": "^1.69.0",
-    "sass-loader": "^13.3.0",
-    "tailwindcss": "^3.4.0",
-    "postcss": "^8.4.0",
-    "autoprefixer": "^10.4.0",
-    "electron-builder": "^26.0.12",
-    "eslint": "^8.55.0",
-    "prettier": "^3.1.0"
-  }
-}
+```
+设置页面 → 添加 API Key → 设置名称和每日额度 → 保存
 ```
 
-## 开发环境配置
+支持添加多个 API Key，系统会自动轮换使用，避免单个 Key 超额度。
 
-### 前置要求
+#### 2️⃣ 搜索 POI
 
-- Node.js 22.x 或更高版本
-- npm 10.x 或 yarn 1.22.x
-- Python 3.x（用于 node-gyp 编译原生模块）
-- macOS 12.0 或更高版本（macOS 开发）
-- Windows 10 或更高版本（Windows 开发）
+**关键词搜索**
+```
+搜索页面 → 输入关键词（如"肯德基"）→ 选择城市 → 搜索
+```
 
-### 安装步骤
+**批量采集**
+```
+搜索页面 → 点击"批量采集" → 设置筛选条件 → 开始采集
+```
 
-1. **安装 Node.js 和 npm**
+批量采集支持：
+- 自动分页（最多 25 页）
+- 进度实时显示
+- 可随时停止
+- 自动去重保存
 
-   ```bash
-   # 使用 Homebrew (macOS)
-   brew install node
+#### 3️⃣ 数据管理
 
-   # 或使用 nvm
-   nvm install 22
-   nvm use 22
+- **查看数据**：已保存 POI 页面查看所有采集的数据
+- **搜索筛选**：支持按名称、地址、城市等字段搜索
+- **编辑删除**：可对单条数据进行编辑或删除
+- **批量操作**：支持批量删除
 
-   # 验证安装
-   node --version
-   npm --version
-   ```
+#### 4️⃣ 数据导出
 
-2. **克隆项目并安装依赖**
+```
+已保存 POI 页面 → 导出 CSV → 选择保存位置
+```
 
-   ```bash
-   cd poi_collector_app
-   npm install
-   # 或使用 yarn
-   yarn install
-   ```
+导出的 CSV 文件：
+- ✅ 完美兼容 Excel
+- ✅ 支持中文显示
+- ✅ 包含所有字段信息
 
-3. **配置环境变量**
+---
 
-   创建 `.env` 文件：
-   ```bash
-   # 高德 API 配置
-   AMAP_API_KEY=your_api_key_here
-   
-   # 数据库配置
-   DB_PATH=./data/poi_database.db
-   
-   # 日志配置
-   LOG_LEVEL=info
-   ```
+## 🛠️ 开发文档
 
-4. **运行应用**
-   ```bash
-   # 开发模式
-   npm run dev
-   
-   # 或分别启动
-   npm run dev:renderer  # 启动前端开发服务器
-   npm run dev:electron  # 启动 Electron
-   ```
-
-### 开发调试
+### 可用脚本
 
 ```bash
-# 开发模式（热重载）
-npm run dev
+# 开发
+npm run dev              # 启动开发模式（热重载）
+npm run dev:main         # 仅构建主进程（watch 模式）
+npm run dev:renderer     # 仅启动渲染进程开发服务器
+npm run dev:electron     # 仅启动 Electron
 
-# 主进程调试
-# 在 VS Code 中使用 F5 启动调试，或使用 Chrome DevTools
+# 构建
+npm run build            # 构建所有代码
+npm run build:main       # 构建主进程
+npm run build:preload    # 构建预加载脚本
+npm run build:renderer   # 构建渲染进程
+
+# 打包
+npm run build:mac        # 打包 macOS 应用
+npm run build:win        # 打包 Windows 应用
+npm run build:linux      # 打包 Linux 应用
+npm run build:all        # 打包所有平台
+
+# 代码质量
+npm run type-check       # TypeScript 类型检查
+npm run lint             # ESLint 代码检查
+npm run format           # Prettier 代码格式化
+```
+
+### 调试技巧
+
+**主进程调试**
+```bash
+# 方法 1：使用 VS Code
+按 F5 启动调试配置
+
+# 方法 2：使用 Chrome DevTools
 npm run dev:main
-
-# 渲染进程调试
-# 在 Electron 窗口中按 Cmd+Option+I (macOS) 或 Ctrl+Shift+I (Windows)
-
-# 类型检查
-npm run type-check
-
-# 代码格式化
-npm run format
-
-# 代码检查
-npm run lint
+# 然后在 Chrome 中打开 chrome://inspect
 ```
 
-## 使用指南
-
-### 1. 配置 API Key
-
-1. 启动应用后，点击侧边栏的 **设置** 图标
-2. 在 API Key 输入框中填入您的高德开放平台 Key
-3. 点击 **保存** 按钮
-
-### 2. 搜索 POI
-
-1. 点击侧边栏的 **搜索** 图标
-2. 输入搜索关键字（如 "肯德基"、"加油站"）
-3. 选择城市（如 "北京"、"上海"）
-4. 可选：选择 POI 类型进行精确筛选
-5. 点击 **搜索** 按钮
-6. 在结果列表中：
-   - 右键单击可保存单条数据
-   - 点击 **保存全部** 可批量保存
-
-### 3. 查看已保存数据
-
-1. 点击侧边栏的 **已保存** 图标
-2. 浏览已保存的 POI 列表
-3. 支持按名称、城市等字段搜索筛选
-
-### 4. 导出数据
-
-1. 在 **已保存** 页面点击 **导出 CSV**
-2. 选择保存位置
-3. 导出的文件兼容 Excel，支持中文显示
-
-## 核心代码示例
-
-### 高德 API 服务（主进程）
-
-```typescript
-// src/main/services/amap-service.ts
-import axios, { AxiosInstance } from 'axios';
-import { POI } from '../../shared/types/poi';
-import { logger } from '../utils/logger';
-
-interface SearchParams {
-  keywords?: string;
-  region?: string;
-  types?: string;
-  pageSize?: number;
-  pageNum?: number;
-}
-
-interface AmapResponse {
-  status: string;
-  info: string;
-  pois?: any[];
-  count?: string;
-}
-
-export class AmapService {
-  private static instance: AmapService;
-  private axios: AxiosInstance;
-  private apiKey: string = '';
-  private readonly baseUrl = 'https://restapi.amap.com/v5/place/text';
-
-  private constructor() {
-    this.axios = axios.create({
-      timeout: 10000,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  }
-
-  public static getInstance(): AmapService {
-    if (!AmapService.instance) {
-      AmapService.instance = new AmapService();
-    }
-    return AmapService.instance;
-  }
-
-  public setApiKey(key: string): void {
-    this.apiKey = key;
-    logger.info('高德 API Key 已设置');
-  }
-
-  public async searchPOI(params: SearchParams): Promise<{
-    pois: POI[];
-    total: number;
-  }> {
-    if (!this.apiKey) {
-      throw new Error('请先配置高德 API Key');
-    }
-
-    if (!params.keywords && !params.types) {
-      throw new Error('关键词和类型不能同时为空');
-    }
-
-    try {
-      const response = await this.axios.get<AmapResponse>(this.baseUrl, {
-        params: {
-          key: this.apiKey,
-          keywords: params.keywords || '',
-          region: params.region || '',
-          types: params.types || '',
-          page_size: params.pageSize || 20,
-          page_num: params.pageNum || 1,
-        },
-      });
-
-      const { data } = response;
-
-      if (data.status === '1') {
-        const pois = (data.pois || []).map(this.transformPOI);
-        const total = parseInt(data.count || '0', 10);
-        
-        logger.info(`搜索成功，找到 ${pois.length} 条结果`);
-        return { pois, total };
-      } else {
-        throw new Error(data.info || '搜索失败');
-      }
-    } catch (error: any) {
-      logger.error('POI 搜索失败:', error);
-      throw new Error(error.message || '网络请求失败');
-    }
-  }
-
-  private transformPOI(raw: any): POI {
-    return {
-      id: raw.id || '',
-      name: raw.name || '',
-      type: raw.type || '',
-      typeCode: raw.typecode || '',
-      address: raw.address || '',
-      location: raw.location || '',
-      tel: raw.tel,
-      pcode: raw.pcode || '',
-      pname: raw.pname || '',
-      cityname: raw.cityname || '',
-      adname: raw.adname || '',
-      adcode: raw.adcode || '',
-      citycode: raw.citycode || '',
-      parent: raw.parent,
-      distance: raw.distance,
-    };
-  }
-}
+**渲染进程调试**
+```bash
+# 在 Electron 窗口中
+macOS: Cmd + Option + I
+Windows/Linux: Ctrl + Shift + I
 ```
 
-### 数据库服务（主进程）
+### 常见问题
 
-```typescript
-// src/main/services/db-service.ts
-import Database from 'better-sqlite3';
-import { app } from 'electron';
-import path from 'path';
-import fs from 'fs';
-import { POI } from '../../shared/types/poi';
-import { logger } from '../utils/logger';
-
-export class DatabaseService {
-  private static instance: DatabaseService;
-  private db: Database.Database | null = null;
-  private dbPath: string;
-
-  private constructor() {
-    const userDataPath = app.getPath('userData');
-    const dbDir = path.join(userDataPath, 'data');
-    
-    if (!fs.existsSync(dbDir)) {
-      fs.mkdirSync(dbDir, { recursive: true });
-    }
-    
-    this.dbPath = path.join(dbDir, 'poi_database.db');
-  }
-
-  public static getInstance(): DatabaseService {
-    if (!DatabaseService.instance) {
-      DatabaseService.instance = new DatabaseService();
-    }
-    return DatabaseService.instance;
-  }
-
-  public initialize(): void {
-    try {
-      this.db = new Database(this.dbPath);
-      this.db.pragma('journal_mode = WAL');
-      this.createTables();
-      logger.info(`数据库初始化成功: ${this.dbPath}`);
-    } catch (error) {
-      logger.error('数据库初始化失败:', error);
-      throw error;
-    }
-  }
-
-  private createTables(): void {
-    if (!this.db) return;
-
-    this.db.exec(`
-      CREATE TABLE IF NOT EXISTS poi (
-        id TEXT PRIMARY KEY,
-        name TEXT NOT NULL,
-        type TEXT,
-        typeCode TEXT,
-        address TEXT,
-        location TEXT,
-        tel TEXT,
-        pcode TEXT,
-        pname TEXT,
-        cityname TEXT,
-        adname TEXT,
-        adcode TEXT,
-        citycode TEXT,
-        parent TEXT,
-        distance TEXT,
-        createdAt INTEGER DEFAULT (strftime('%s', 'now')),
-        updatedAt INTEGER DEFAULT (strftime('%s', 'now'))
-      );
-
-      CREATE INDEX IF NOT EXISTS idx_poi_name ON poi(name);
-      CREATE INDEX IF NOT EXISTS idx_poi_cityname ON poi(cityname);
-      CREATE INDEX IF NOT EXISTS idx_poi_typeCode ON poi(typeCode);
-    `);
-  }
-
-  public insertPOI(poi: POI): void {
-    if (!this.db) throw new Error('数据库未初始化');
-
-    const stmt = this.db.prepare(`
-      INSERT OR REPLACE INTO poi (
-        id, name, type, typeCode, address, location, tel,
-        pcode, pname, cityname, adname, adcode, citycode,
-        parent, distance
-      ) VALUES (
-        @id, @name, @type, @typeCode, @address, @location, @tel,
-        @pcode, @pname, @cityname, @adname, @adcode, @citycode,
-        @parent, @distance
-      )
-    `);
-
-    stmt.run(poi);
-    logger.info(`POI 已保存: ${poi.name}`);
-  }
-
-  public insertBatch(pois: POI[]): number {
-    if (!this.db) throw new Error('数据库未初始化');
-
-    const insert = this.db.prepare(`
-      INSERT OR REPLACE INTO poi (
-        id, name, type, typeCode, address, location, tel,
-        pcode, pname, cityname, adname, adcode, citycode,
-        parent, distance
-      ) VALUES (
-        @id, @name, @type, @typeCode, @address, @location, @tel,
-        @pcode, @pname, @cityname, @adname, @adcode, @citycode,
-        @parent, @distance
-      )
-    `);
-
-    const insertMany = this.db.transaction((pois: POI[]) => {
-      for (const poi of pois) {
-        insert.run(poi);
-      }
-    });
-
-    insertMany(pois);
-    logger.info(`批量保存 ${pois.length} 条 POI 数据`);
-    return pois.length;
-  }
-
-  public getAllPOIs(limit?: number, offset?: number): POI[] {
-    if (!this.db) throw new Error('数据库未初始化');
-
-    let query = 'SELECT * FROM poi ORDER BY createdAt DESC';
-    if (limit) {
-      query += ` LIMIT ${limit}`;
-      if (offset) {
-        query += ` OFFSET ${offset}`;
-      }
-    }
-
-    return this.db.prepare(query).all() as POI[];
-  }
-
-  public searchPOIs(keyword: string): POI[] {
-    if (!this.db) throw new Error('数据库未初始化');
-
-    return this.db
-      .prepare(`
-        SELECT * FROM poi 
-        WHERE name LIKE ? OR address LIKE ? OR cityname LIKE ?
-        ORDER BY createdAt DESC
-      `)
-      .all(`%${keyword}%`, `%${keyword}%`, `%${keyword}%`) as POI[];
-  }
-
-  public deletePOI(id: string): void {
-    if (!this.db) throw new Error('数据库未初始化');
-
-    this.db.prepare('DELETE FROM poi WHERE id = ?').run(id);
-    logger.info(`POI 已删除: ${id}`);
-  }
-
-  public getCount(): number {
-    if (!this.db) throw new Error('数据库未初始化');
-
-    const result = this.db.prepare('SELECT COUNT(*) as count FROM poi').get() as { count: number };
-    return result.count;
-  }
-
-  public close(): void {
-    if (this.db) {
-      this.db.close();
-      logger.info('数据库连接已关闭');
-    }
-  }
-}
-```
-
-### Redux Store 配置（渲染进程）
-
-```typescript
-// src/renderer/store/poiSlice.ts
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { POI } from '../../shared/types/poi';
-import { ipcRenderer } from '../api/ipc';
-
-interface POIState {
-  searchResults: POI[];
-  savedPOIs: POI[];
-  isLoading: boolean;
-  error: string | null;
-  currentPage: number;
-  pageSize: number;
-  totalCount: number;
-  hasMore: boolean;
-}
-
-const initialState: POIState = {
-  searchResults: [],
-  savedPOIs: [],
-  isLoading: false,
-  error: null,
-  currentPage: 1,
-  pageSize: 20,
-  totalCount: 0,
-  hasMore: false,
-};
-
-// 异步操作：搜索 POI
-export const searchPOI = createAsyncThunk(
-  'poi/search',
-  async (params: {
-    keywords?: string;
-    region?: string;
-    types?: string;
-    pageNum?: number;
-  }) => {
-    const response = await ipcRenderer.invoke('poi:search', params);
-    return response;
-  }
-);
-
-// 异步操作：保存 POI
-export const savePOI = createAsyncThunk(
-  'poi/save',
-  async (poi: POI) => {
-    await ipcRenderer.invoke('poi:save', poi);
-    return poi;
-  }
-);
-
-// 异步操作：批量保存 POI
-export const saveBatchPOI = createAsyncThunk(
-  'poi/saveBatch',
-  async (pois: POI[]) => {
-    const count = await ipcRenderer.invoke('poi:saveBatch', pois);
-    return count;
-  }
-);
-
-// 异步操作：获取已保存的 POI
-export const fetchSavedPOIs = createAsyncThunk(
-  'poi/fetchSaved',
-  async () => {
-    const pois = await ipcRenderer.invoke('poi:getAll');
-    return pois;
-  }
-);
-
-// 异步操作：删除 POI
-export const deletePOI = createAsyncThunk(
-  'poi/delete',
-  async (id: string) => {
-    await ipcRenderer.invoke('poi:delete', id);
-    return id;
-  }
-);
-
-const poiSlice = createSlice({
-  name: 'poi',
-  initialState,
-  reducers: {
-    clearSearchResults: (state) => {
-      state.searchResults = [];
-      state.currentPage = 1;
-      state.totalCount = 0;
-      state.hasMore = false;
-    },
-    clearError: (state) => {
-      state.error = null;
-    },
-    setPage: (state, action: PayloadAction<number>) => {
-      state.currentPage = action.payload;
-    },
-  },
-  extraReducers: (builder) => {
-    builder
-      // 搜索 POI
-      .addCase(searchPOI.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(searchPOI.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.searchResults = action.payload.pois;
-        state.totalCount = action.payload.total;
-        state.hasMore = action.payload.pois.length === state.pageSize;
-      })
-      .addCase(searchPOI.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message || '搜索失败';
-      })
-      // 保存 POI
-      .addCase(savePOI.fulfilled, (state) => {
-        state.error = null;
-      })
-      .addCase(savePOI.rejected, (state, action) => {
-        state.error = action.error.message || '保存失败';
-      })
-      // 批量保存 POI
-      .addCase(saveBatchPOI.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(saveBatchPOI.fulfilled, (state) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(saveBatchPOI.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message || '批量保存失败';
-      })
-      // 获取已保存的 POI
-      .addCase(fetchSavedPOIs.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchSavedPOIs.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.savedPOIs = action.payload;
-      })
-      .addCase(fetchSavedPOIs.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message || '获取数据失败';
-      })
-      // 删除 POI
-      .addCase(deletePOI.fulfilled, (state, action) => {
-        state.savedPOIs = state.savedPOIs.filter(
-          (poi) => poi.id !== action.payload
-        );
-      });
-  },
-});
-
-export const { clearSearchResults, clearError, setPage } = poiSlice.actions;
-export default poiSlice.reducer;
-```
-
-## Electron 应用配置
-
-### IPC 通道定义
-
-```typescript
-// src/shared/constants/ipc-channels.ts
-export const IPC_CHANNELS = {
-  // POI 相关
-  POI_SEARCH: 'poi:search',
-  POI_SAVE: 'poi:save',
-  POI_SAVE_BATCH: 'poi:saveBatch',
-  POI_GET_ALL: 'poi:getAll',
-  POI_DELETE: 'poi:delete',
-  POI_SEARCH_LOCAL: 'poi:searchLocal',
-  
-  // 设置相关
-  SETTINGS_GET: 'settings:get',
-  SETTINGS_SET: 'settings:set',
-  SETTINGS_SET_API_KEY: 'settings:setApiKey',
-  
-  // 导出相关
-  EXPORT_CSV: 'export:csv',
-  EXPORT_SELECT_PATH: 'export:selectPath',
-  
-  // 批量采集相关
-  BATCH_START: 'batch:start',
-  BATCH_STOP: 'batch:stop',
-  BATCH_PROGRESS: 'batch:progress',
-} as const;
-```
-
-### 预加载脚本
-
-```typescript
-// src/preload/index.ts
-import { contextBridge, ipcRenderer } from 'electron';
-import { IPC_CHANNELS } from '../shared/constants/ipc-channels';
-
-// 安全地暴露 API 给渲染进程
-contextBridge.exposeInMainWorld('electronAPI', {
-  // POI 操作
-  searchPOI: (params: any) => ipcRenderer.invoke(IPC_CHANNELS.POI_SEARCH, params),
-  savePOI: (poi: any) => ipcRenderer.invoke(IPC_CHANNELS.POI_SAVE, poi),
-  saveBatchPOI: (pois: any[]) => ipcRenderer.invoke(IPC_CHANNELS.POI_SAVE_BATCH, pois),
-  getAllPOIs: () => ipcRenderer.invoke(IPC_CHANNELS.POI_GET_ALL),
-  deletePOI: (id: string) => ipcRenderer.invoke(IPC_CHANNELS.POI_DELETE, id),
-  searchLocalPOIs: (keyword: string) => ipcRenderer.invoke(IPC_CHANNELS.POI_SEARCH_LOCAL, keyword),
-  
-  // 设置操作
-  getSettings: () => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_GET),
-  setSettings: (settings: any) => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_SET, settings),
-  setApiKey: (key: string) => ipcRenderer.invoke(IPC_CHANNELS.SETTINGS_SET_API_KEY, key),
-  
-  // 导出操作
-  exportCSV: (data: any[], filename: string) => ipcRenderer.invoke(IPC_CHANNELS.EXPORT_CSV, data, filename),
-  selectExportPath: () => ipcRenderer.invoke(IPC_CHANNELS.EXPORT_SELECT_PATH),
-  
-  // 批量采集
-  startBatchCollect: (params: any) => ipcRenderer.invoke(IPC_CHANNELS.BATCH_START, params),
-  stopBatchCollect: () => ipcRenderer.invoke(IPC_CHANNELS.BATCH_STOP),
-  onBatchProgress: (callback: (progress: any) => void) => {
-    ipcRenderer.on(IPC_CHANNELS.BATCH_PROGRESS, (_, progress) => callback(progress));
-  },
-});
-
-// TypeScript 类型定义
-declare global {
-  interface Window {
-    electronAPI: {
-      searchPOI: (params: any) => Promise<any>;
-      savePOI: (poi: any) => Promise<void>;
-      saveBatchPOI: (pois: any[]) => Promise<number>;
-      getAllPOIs: () => Promise<any[]>;
-      deletePOI: (id: string) => Promise<void>;
-      searchLocalPOIs: (keyword: string) => Promise<any[]>;
-      getSettings: () => Promise<any>;
-      setSettings: (settings: any) => Promise<void>;
-      setApiKey: (key: string) => Promise<void>;
-      exportCSV: (data: any[], filename: string) => Promise<string>;
-      selectExportPath: () => Promise<string | null>;
-      startBatchCollect: (params: any) => Promise<void>;
-      stopBatchCollect: () => Promise<void>;
-      onBatchProgress: (callback: (progress: any) => void) => void;
-    };
-  }
-}
-```
-
-## 构建与发布
-
-### package.json 脚本配置
-
-```json
-{
-  "name": "poi-collector-app",
-  "version": "1.0.0",
-  "description": "POI 数据采集应用",
-  "main": "dist/main/index.js",
-  "scripts": {
-    "dev": "concurrently \"npm run dev:renderer\" \"npm run dev:electron\"",
-    "dev:renderer": "webpack serve --config webpack.renderer.config.js",
-    "dev:electron": "wait-on http://localhost:3000 && electron .",
-    "build": "npm run build:main && npm run build:renderer",
-    "build:main": "webpack --config webpack.main.config.js",
-    "build:renderer": "webpack --config webpack.renderer.config.js",
-    "build:all": "npm run build && electron-builder -mwl",
-    "build:mac": "npm run build && electron-builder --mac",
-    "build:win": "npm run build && electron-builder --win",
-    "build:linux": "npm run build && electron-builder --linux",
-    "type-check": "tsc --noEmit",
-    "lint": "eslint src --ext .ts,.tsx",
-    "format": "prettier --write \"src/**/*.{ts,tsx,scss}\""
-  }
-}
-```
-
-### Electron Builder 配置
-
-```json
-// build/electron-builder.json
-{
-  "appId": "com.yourcompany.poicollector",
-  "productName": "POI Collector",
-  "copyright": "Copyright © 2025",
-  "directories": {
-    "output": "release",
-    "buildResources": "resources"
-  },
-  "files": [
-    "dist/**/*",
-    "resources/**/*",
-    "package.json"
-  ],
-  "mac": {
-    "target": [
-      {
-        "target": "dmg",
-        "arch": ["x64", "arm64"]
-      },
-      {
-        "target": "zip",
-        "arch": ["x64", "arm64"]
-      }
-    ],
-    "category": "public.app-category.utilities",
-    "icon": "resources/icons/icon.icns",
-    "hardenedRuntime": true,
-    "gatekeeperAssess": false,
-    "entitlements": "build/entitlements.mac.plist",
-    "entitlementsInherit": "build/entitlements.mac.plist"
-  },
-  "dmg": {
-    "contents": [
-      {
-        "x": 130,
-        "y": 220
-      },
-      {
-        "x": 410,
-        "y": 220,
-        "type": "link",
-        "path": "/Applications"
-      }
-    ],
-    "window": {
-      "width": 540,
-      "height": 380
-    }
-  },
-  "win": {
-    "target": [
-      {
-        "target": "nsis",
-        "arch": ["x64", "ia32"]
-      },
-      {
-        "target": "portable",
-        "arch": ["x64"]
-      }
-    ],
-    "icon": "resources/icons/icon.ico"
-  },
-  "nsis": {
-    "oneClick": false,
-    "allowToChangeInstallationDirectory": true,
-    "createDesktopShortcut": true,
-    "createStartMenuShortcut": true
-  },
-  "linux": {
-    "target": [
-      "AppImage",
-      "deb",
-      "rpm"
-    ],
-    "category": "Utility",
-    "icon": "resources/icons/"
-  }
-}
-```
-
-### macOS 权限配置
-
-```xml
-<!-- build/entitlements.mac.plist -->
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
-  <true/>
-  <key>com.apple.security.network.client</key>
-  <true/>
-  <key>com.apple.security.files.user-selected.read-write</key>
-  <true/>
-  <key>com.apple.security.files.downloads.read-write</key>
-  <true/>
-</dict>
-</plist>
-```
-
-### 构建命令
+<details>
+<summary><b>Q: 如何解决 better-sqlite3 编译失败？</b></summary>
 
 ```bash
-# 开发模式（热重载）
-npm run dev
-
-# 构建所有平台（macOS、Windows、Linux）
-npm run build:all
-
-# 只构建 macOS 版本
-npm run build:mac
-
-# 只构建 Windows 版本
-npm run build:win
-
-# 只构建 Linux 版本
-npm run build:linux
-
-# 构建产物位置
-# release/
-#   ├── POI Collector-1.0.0.dmg          # macOS DMG
-#   ├── POI Collector-1.0.0-mac.zip      # macOS ZIP
-#   ├── POI Collector Setup 1.0.0.exe   # Windows 安装程序
-#   ├── POI Collector 1.0.0.exe         # Windows 便携版
-#   ├── POI Collector-1.0.0.AppImage    # Linux AppImage
-#   ├── poi-collector-app_1.0.0_amd64.deb # Debian 包
-#   └── poi-collector-app-1.0.0.x86_64.rpm # RPM 包
-```
-
-## 性能优化
-
-### 主进程优化
-
-- 使用 Worker Threads 处理大量数据计算
-- 数据库操作使用事务批量处理
-- 实现请求队列和限流机制
-
-### 渲染进程优化
-
-- 使用 React.memo 和 useMemo 减少不必要的重渲染
-- 虚拟列表渲染大量数据
-- 懒加载和代码分割
-- 图片资源压缩和懒加载
-
-### 数据库优化
-
-- 创建适当的索引
-- 使用 WAL 模式提高并发性能
-- 定期执行 VACUUM 优化数据库
-
-## 安全性
-
-### API Key 存储
-
-- 使用 electron-store 加密存储 API Key
-- 不在代码中硬编码敏感信息
-
-### IPC 安全
-
-- 使用 contextBridge 安全暴露 API
-- 验证所有 IPC 输入参数
-- 禁用 nodeIntegration，启用 contextIsolation
-
-### 数据验证
-
-- 对用户输入进行严格验证
-- 防止 SQL 注入（使用参数化查询）
-- XSS 防护（React 默认转义）
-
-## 测试策略
-
-### 单元测试
-
-```bash
-# 安装测试依赖
-npm install --save-dev jest @types/jest ts-jest
-
-# 运行测试
-npm test
-
-# 测试覆盖率
-npm test -- --coverage
-```
-
-### E2E 测试
-
-```bash
-# 安装 Playwright
-npm install --save-dev @playwright/test
-
-# 运行 E2E 测试
-npm run test:e2e
-```
-
-## 参考资料
-
-### 官方文档
-
-- [Electron 官方文档](https://www.electronjs.org/docs/latest)
-- [React 官方文档](https://react.dev/)
-- [Redux Toolkit 文档](https://redux-toolkit.js.org/)
-- [Material-UI 文档](https://mui.com/)
-- [TypeScript 文档](https://www.typescriptlang.org/docs/)
-
-### API 文档
-
-- [高德开放平台 POI 搜索 API](https://lbs.amap.com/api/webservice/guide/api/search)
-- [better-sqlite3 文档](https://github.com/WiseLibs/better-sqlite3)
-- [Electron Builder 文档](https://www.electron.build/)
-
-### 最佳实践
-
-- [Electron 安全最佳实践](https://www.electronjs.org/docs/latest/tutorial/security)
-- [React 性能优化](https://react.dev/learn/render-and-commit)
-- [TypeScript 最佳实践](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
-
-## 常见问题
-
-### 1. 安装依赖失败
-
-**问题**：better-sqlite3 编译失败
-
-**解决**：
-```bash
+# 1. 安装编译工具
 # macOS
-brew install python3
-npm install --build-from-source
+xcode-select --install
 
 # Windows
 npm install --global windows-build-tools
-npm install --build-from-source
+
+# 2. 重新编译
+npm run rebuild
 ```
+</details>
 
-### 2. Electron 启动白屏
+<details>
+<summary><b>Q: 如何配置 Supabase 云端存储？</b></summary>
 
-**问题**：应用启动后显示白屏
+1. 访问 [Supabase](https://supabase.com/) 创建项目
+2. 获取项目 URL 和 API Key
+3. 在应用设置页面配置 Supabase 连接
+4. 切换到云端模式即可使用
+</details>
 
-**解决**：
-- 检查控制台是否有错误信息
-- 确认 webpack 构建成功
-- 检查 preload 脚本是否正确加载
+<details>
+<summary><b>Q: 批量采集失败怎么办？</b></summary>
 
-### 3. IPC 通信失败
+检查以下几点：
+- API Key 是否有效且未超额度
+- 网络连接是否正常
+- 搜索条件是否正确
+- 查看日志文件获取详细错误信息
+</details>
 
-**问题**：渲染进程无法调用主进程方法
+---
 
-**解决**：
-- 确认 preload 脚本已正确配置
-- 检查 contextBridge 是否正确暴露 API
-- 验证 IPC 通道名称是否一致
+## 📝 更新日志
 
-### 4. 数据库锁定
+### v1.0.0 (2026-01-04)
 
-**问题**：数据库被锁定无法访问
+#### ✨ 新功能
+- 🎉 首次发布
+- 🔍 POI 关键词搜索和周边搜索
+- 📦 批量自动采集功能
+- 💾 本地 SQLite + 云端 Supabase 双模式存储
+- 📊 完整的数据管理功能
+- 📤 CSV 格式数据导出
+- 🔑 多 API Key 管理和自动轮换
+- 🏙️ 全国城市编码数据管理
+- 🏷️ POI 分类体系管理
+- ⚙️ 丰富的个性化设置
 
-**解决**：
-```typescript
-// 启用 WAL 模式
-this.db.pragma('journal_mode = WAL');
+#### 🐛 Bug 修复
+- 修复 Mac 应用启动崩溃问题
+- 修复批量采集保存失败问题（重复 ID 冲突）
+- 修复 Webpack 打包配置问题
+- 修复 Sass 弃用警告
 
-// 设置超时
-this.db.pragma('busy_timeout = 5000');
-```
+#### 🔧 优化改进
+- 优化批量采集性能
+- 优化数据库查询效率
+- 优化 UI 响应速度
+- 优化错误提示信息
 
-### 5. 打包后无法运行
+---
 
-**问题**：打包后的应用无法启动
+## 🤝 贡献指南
 
-**解决**：
-- 检查 electron-builder 配置
-- 确认所有资源文件已打包
-- macOS 需要签名和公证
+欢迎贡献代码、报告问题或提出建议！
 
-## 贡献指南
-
-欢迎贡献代码、报告问题或提出新功能建议！
+### 贡献流程
 
 1. Fork 本仓库
 2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交修改 (`git commit -m 'Add some AmazingFeature'`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 开启 Pull Request
 
 ### 代码规范
 
-- 使用 TypeScript 编写代码
 - 遵循 ESLint 和 Prettier 配置
-- 编写清晰的代码注释（中文）
-- 添加单元测试
+- 编写清晰的提交信息
+- 添加必要的注释和文档
+- 确保所有测试通过
 
-## 许可证
+---
 
-MIT License
+## 📄 许可证
 
-## 联系方式
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
 
-如有问题或建议，请通过以下方式联系：
+---
 
-- 提交 Issue：[GitHub Issues](https://github.com/yourusername/poi_collector_app/issues)
-- Email：your.email@example.com
+## 🙏 致谢
+
+- [Electron](https://www.electronjs.org/) - 跨平台桌面应用框架
+- [React](https://reactjs.org/) - 用户界面库
+- [Material-UI](https://mui.com/) - React UI 组件库
+- [高德地图开放平台](https://lbs.amap.com/) - POI 数据来源
+- [Supabase](https://supabase.com/) - 云端数据库服务
+
+---
+
+<div align="center">
+
+**⭐ 如果这个项目对你有帮助，请给一个 Star！**
+
+Made with ❤️ by [PbEeNiG]
+
+</div>
