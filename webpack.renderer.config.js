@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -8,15 +9,21 @@ module.exports = (env, argv) => {
   return {
     target: 'electron-renderer',
     entry: './src/renderer/index.tsx',
+    externalsPresets: { node: false },
     output: {
       path: path.resolve(__dirname, 'dist/renderer'),
       filename: 'bundle.js',
+      globalObject: 'this',
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.jsx'],
       alias: {
         '@shared': path.resolve(__dirname, 'src/shared'),
         '@renderer': path.resolve(__dirname, 'src/renderer'),
+        events: 'events',
+      },
+      fallback: {
+        global: false,
       },
     },
     module: {
@@ -33,7 +40,19 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.scss$/,
-          use: ['style-loader', 'css-loader', 'sass-loader'],
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                api: 'modern',
+                sassOptions: {
+                  silenceDeprecations: ['legacy-js-api'],
+                },
+              },
+            },
+          ],
         },
         {
           test: /\.css$/,
@@ -42,6 +61,12 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'global': 'window',
+      }),
+      new webpack.ProvidePlugin({
+        process: 'process/browser.js',
+      }),
       new HtmlWebpackPlugin({
         template: './src/renderer/index.html',
         filename: 'index.html',

@@ -831,19 +831,19 @@ const SearchPage: React.FC = () => {
                 将按以下条件批量采集 POI 数据：
               </Typography>
               <Box sx={{ mt: 2, p: 2, bgcolor: 'grey.100', borderRadius: 1 }}>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ color: 'black' }}>
                   <strong>POI 分类：</strong>{selectedPoiType?.name || types || '未选择'}
                 </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
+                <Typography variant="body2" sx={{ mt: 1, color: 'black' }}>
                   <strong>城市区域：</strong>{selectedCity?.name || region || '未选择'}
                 </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
+                <Typography variant="body2" sx={{ mt: 1, color: 'black' }}>
                   <strong>每页数量：</strong>{pageSize} 条
                 </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
+                <Typography variant="body2" sx={{ mt: 1, color: 'black' }}>
                   <strong>最大页数：</strong>25 页
                 </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
+                <Typography variant="body2" sx={{ mt: 1, color: 'black' }}>
                   <strong>请求延迟：</strong>{settings.searchDelay || 1000} 毫秒
                 </Typography>
               </Box>

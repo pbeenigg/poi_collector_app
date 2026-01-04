@@ -118,6 +118,20 @@ export class DatabaseService {
   public insertBatch(pois: POI[]): number {
     if (!this.db) throw new Error('数据库未初始化');
 
+    // 对数据去重，避免同一个 id 被多次插入
+    const uniquePois = new Map<string, POI>();
+    for (const poi of pois) {
+      if (poi.id) {
+        uniquePois.set(poi.id, poi);
+      }
+    }
+    
+    const deduplicatedPois = Array.from(uniquePois.values());
+    
+    if (deduplicatedPois.length < pois.length) {
+      logger.warn(`批量数据中有重复，原始 ${pois.length} 条，去重后 ${deduplicatedPois.length} 条`);
+    }
+
     const stmt = this.db.prepare(`
       INSERT OR REPLACE INTO poi (
         id, name, type, typeCode, address, location, tel,
@@ -136,9 +150,9 @@ export class DatabaseService {
       }
     });
 
-    insertMany(pois);
-    logger.info(`批量保存 ${pois.length} 条 POI 数据`);
-    return pois.length;
+    insertMany(deduplicatedPois);
+    logger.info(`批量保存 ${deduplicatedPois.length} 条 POI 数据`);
+    return deduplicatedPois.length;
   }
 
   /**

@@ -79,8 +79,22 @@ export class SupabaseDatabaseService {
   public async saveBatchPOI(pois: POI[]): Promise<number> {
     const client = this.supabaseManager.getClient();
     
+    // 对数据去重，避免同一个 id 被多次插入
+    const uniquePois = new Map<string, POI>();
+    for (const poi of pois) {
+      if (poi.id) {
+        uniquePois.set(poi.id, poi);
+      }
+    }
+    
+    const deduplicatedPois = Array.from(uniquePois.values());
+    
+    if (deduplicatedPois.length < pois.length) {
+      logger.warn(`批量数据中有重复，原始 ${pois.length} 条，去重后 ${deduplicatedPois.length} 条`);
+    }
+    
     // 转换 camelCase 到 snake_case
-    const dbPois = pois.map(poi => ({
+    const dbPois = deduplicatedPois.map(poi => ({
       id: poi.id,
       name: poi.name,
       type: poi.type,
@@ -105,8 +119,8 @@ export class SupabaseDatabaseService {
       throw new Error(`批量保存失败: ${error.message}`);
     }
     
-    logger.info(`批量保存 ${pois.length} 条 POI 到 Supabase`);
-    return pois.length;
+    logger.info(`批量保存 ${deduplicatedPois.length} 条 POI 到 Supabase`);
+    return deduplicatedPois.length;
   }
 
   /**
